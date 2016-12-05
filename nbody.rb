@@ -15,10 +15,7 @@ class NbodySimulation < Gosu::Window
   def update
     real_force
     @planets.each do |planet|
-      planet.calc_x_velocity
-      planet.calc_y_velocity
-      planet.calc_x_position
-      planet.calc_y_position
+      planet.calc_velocity_and_position
     end
   end
 
