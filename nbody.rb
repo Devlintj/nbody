@@ -1,7 +1,12 @@
 require "gosu"
 require_relative "z_order"
 require "./Planets"
+file = ARGV
+if file[0] == nil
+  file[0] = "planets.txt"
+end
 
+FILE = file[0]
 class NbodySimulation < Gosu::Window
 
   def initialize
@@ -31,11 +36,18 @@ class NbodySimulation < Gosu::Window
 end
 
 def solar_system
-  txt = open('simulations/planets.txt')
+  txt = open("simulations/#{FILE}")
   line_counter = 0
+  planet_counter = 0
   planet_arry = []
    txt.each_line do |line|
-     if line_counter > 1
+     if line_counter == 0
+       planet_counter = line.to_i
+     end
+     if line_counter == 1
+       @universe = line
+     end
+     if line_counter > 1 && line_counter < planet_counter + 3
        info = line.split(" ")
        x = info[0].to_f
        y = info[1].to_f
@@ -43,7 +55,7 @@ def solar_system
        y_vel = info[3].to_f
        mass = info[4].to_f
        image = Gosu::Image.new("images/#{info[5]}")
-       planet_arry.push(Planets.new(x, y, x_vel, y_vel, mass, image))
+       planet_arry.push(Planets.new(x, y, x_vel, y_vel, mass, image, @universe))
      end
      line_counter += 1
    end
