@@ -47,7 +47,7 @@ def solar_system
      if line_counter == 1
        @universe = line
      end
-     if line_counter > 1 && line_counter < planet_counter + 3
+     if line_counter > 1 && line_counter < planet_counter + 2
        info = line.split(" ")
        x = info[0].to_f
        y = info[1].to_f
