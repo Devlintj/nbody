@@ -7,6 +7,7 @@
 1. Info is more organized and easier to find.
 2. It handles all the body classes neatly
 3. Less information clutter/lines needed for the main rb file (nbody.rb).
+
 ##The disadvantages of having a separate universe class are:
 1. You need another file to hold the new class
 2. You have to write more lines than you would if you just had a couple functions to handle the bodies in the nbody.rb
